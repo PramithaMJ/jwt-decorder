@@ -2,6 +2,7 @@ package com.jwt_decorder.jwt_decorder;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +19,7 @@ public class JwtDecorderApplication {
 		SpringApplication.run(JwtDecorderApplication.class, args);
 	}
 
-	@PostMapping("/decode")
+	@PostMapping(value = "/decode",consumes = MediaType.TEXT_PLAIN_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String decorodeJwt(@RequestBody String token) throws UnsupportedEncodingException {
 		// header.payload.signature
 		String header = token.split("\\.")[0];
